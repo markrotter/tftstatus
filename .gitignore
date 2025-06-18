@@ -1,0 +1,11 @@
+# raspberry‑pi & system
+*.img
+*.swp
+*.swo
+# speedtest & download caches
+ookla*
+librespeed*
+# editor / OS miscellanea
+.DS_Store
+Thumbs.db
+
