@@ -3,6 +3,9 @@
 ## Overview
 This project turns a Raspberry Pi into a network status dashboard with a small TFT display. It shows real-time system and network information on the screen, making a handy status monitor. The dashboard can auto-start on boot and is ideal for monitoring network speed, IP addresses, and system resource usage at a glance.
 
+## Caveats
+This is a work in progress, this project was developed to learn coding using AI models such as ChatGPT. The Raspberry Pi 3B+ does not have fast enough networking so the speedtest functionlity is not super helpful. The display hardware used has been chellenging to use with RPi 4 and up.
+
 ## Features
 - **Network Speed Monitor:** Displays current upload/download throughput and runs periodic internet speed tests (using Speedtest CLI).
 - **System Stats:** Shows CPU load, memory usage, disk space, and uptime on the TFT display.
@@ -23,6 +26,6 @@ This project turns a Raspberry Pi into a network status dashboard with a small T
 cd ~
 git clone git@github.com:markrotter/tftstatus.git
 cd tftstatus
-./status_setup_drivers.sh $USER   # requires sudo
-./install_speed_cli.sh            # optional
-./status_install_autostart.sh
+./status_setup_drivers.sh $USER   # requires sudo           This is to set up the display drivers etc
+./install_speed_cli.sh            # optional                Installs Ookla Speedtest
+./status_install_autostart.sh                               Sets up status.sh so it autostarts on systemd
