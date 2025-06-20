@@ -20,12 +20,50 @@ This is a work in progress, this project was developed to learn coding using AI 
 - **MicroSD Card:** With Raspberry Pi OS installed.
 - *(Optional)* **Case/Mount:** A case or stand to mount the Pi and display.
 
-## Installation
+## Quick install — Raspberry Pi OS 64-bit
+
+Follow the steps below; each code block can be copied directly into your terminal.
+
+### 0 — Update & install Git
 ```bash
-# Clone repository
+sudo apt update && sudo apt full-upgrade -y
+sudo apt install -y git
+```
+
+### 1 — Clone the repository
+```bash
 cd ~
-git clone git@github.com:markrotter/tftstatus.git
+git clone git@github.com:<GITHUB-USER>/tftstatus.git
 cd tftstatus
-./status_setup_drivers.sh $USER   # requires sudo           This is to set up the display drivers etc
-./install_speed_cli.sh            # optional                Installs Ookla Speedtest
-./status_install_autostart.sh                               Sets up status.sh so it autostarts on systemd
+```
+*Use the HTTPS URL if you prefer PAT authentication.*
+### 2 — Make scripts executable
+```bash
+chmod +x *.sh
+```
+### 3 — Install TFT drivers & console tweaks
+```bash
+sudo ./status_setup_drivers.sh <USER>
+```
+### 4 — (Optional) Install speed‑test CLIs
+```bash
+sudo ./install_speed_cli.sh
+```
+### 5 — Enable the dashboard service
+```bash
+./status_install_autostart.sh
+```
+### 6 — Reboot once
+```bash
+sudo reboot
+```
+
+### 7 — Pull updates later
+```bash
+cd ~/tftstatus
+git pull --rebase
+systemctl --user restart tft-dashboard
+```
+
+After step 6 the TFT should show IP, ping, CPU temperature, and network speed in real time.  
+For service logs: `journalctl --user -u tft-dashboard -f`.
